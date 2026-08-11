@@ -129,6 +129,9 @@ INTERNSHIP PLATFORM
 <a href="#internships" class="hover:text-cyan-600">Internships</a>
 <a href="#recruiters" class="hover:text-cyan-600">Recruiters</a>
 <a href="#contact" class="hover:text-cyan-600">Contact</a>
+    <a href="#profile" onclick="openProfile()" class="hover:text-indigo-600">
+       Profile
+   </a>   
 
 </div>
 
@@ -576,6 +579,92 @@ Send Message
 
 </div>
 </div>
+</section>
+
+    <section id="profile" class="py-20 bg-slate-100 dark:bg-slate-900/50">
+  <div class="max-w-5xl mx-auto px-5">
+
+    <div class="text-center mb-10">
+      <p class="text-indigo-600 font-semibold">STUDENT PROFILE</p>
+      <h2 class="text-4xl font-extrabold mt-2">
+        Build Your Professional Profile
+      </h2>
+      <p class="text-slate-500 mt-3">
+        Complete your profile and make your internship applications stronger.
+      </p>
+    </div>
+
+    <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border
+                border-slate-200 dark:border-slate-800 shadow-xl">
+
+      <div class="flex flex-col md:flex-row items-center gap-6">
+
+        <div class="w-24 h-24 rounded-full bg-gradient-to-br
+                    from-indigo-600 to-violet-600 text-white
+                    flex items-center justify-center text-3xl font-bold">
+          MP
+        </div>
+
+        <div class="text-center md:text-left">
+          <h3 id="profileName" class="text-2xl font-bold">
+            Student Profile
+          </h3>
+
+          <p id="profileEmail" class="text-slate-500 mt-1">
+            Login to view your profile
+          </p>
+
+          <span class="inline-block mt-3 px-3 py-1 rounded-full
+                       bg-indigo-100 dark:bg-indigo-500/20
+                       text-indigo-600 text-sm">
+            Student
+          </span>
+        </div>
+
+        <button onclick="openAuth('login')"
+                class="md:ml-auto px-5 py-3 rounded-xl
+                       bg-indigo-600 hover:bg-indigo-700
+                       text-white font-semibold">
+          Login / Register
+        </button>
+
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
+          <p class="text-sm text-slate-500">Applications</p>
+          <h4 class="text-2xl font-bold mt-1">0</h4>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
+          <p class="text-sm text-slate-500">Shortlisted</p>
+          <h4 class="text-2xl font-bold mt-1 text-green-500">0</h4>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
+          <p class="text-sm text-slate-500">Profile Completion</p>
+          <h4 class="text-2xl font-bold mt-1">0%</h4>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
+          <p class="text-sm text-slate-500">Saved Internships</p>
+          <h4 class="text-2xl font-bold mt-1">0</h4>
+        </div>
+
+      </div>
+
+      <div class="mt-6 flex justify-center">
+        <button onclick="openAuth('login')"
+                class="px-6 py-3 rounded-xl border
+                       border-slate-300 dark:border-slate-700
+                       font-semibold hover:border-indigo-500">
+          View Full Profile →
+        </button>
+      </div>
+
+    </div>
+  </div>
 </section>
 
 </main>
@@ -1130,6 +1219,19 @@ color:"bg-purple-600",
 tags:["Python","Pandas","ML"],
 description:"Analyze datasets, build predictive models and create data-driven solutions for real business problems."
 },
+
+{
+title:"Python AI Intern",
+company:"TechNova Labs",
+category:"AI/ML",
+location:"Pune, India",
+duration:"3 Months",
+stipend:"₹10,000/mo",
+logo:"Py",
+color:"bg-orange-500",
+tags:["Python","AI/ML","Flask"],
+description:"Work on real-world AI and Python projects."
+},    
 
 {
 title:"Python Developer Intern",
@@ -1698,6 +1800,26 @@ behavior:"smooth"
 
 renderInternships();
 
+    function openProfile(){
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if(!user){
+    toast("Please login or register first.");
+    setTimeout(() => openAuth("login"), 700);
+    return;
+  }
+
+  document.getElementById("profileName").textContent =
+    user.name || "Student";
+
+  document.getElementById("profileEmail").textContent =
+    user.email || "";
+
+  document.getElementById("profile")
+    .scrollIntoView({behavior:"smooth"});
+}
+    
 </script>
 
 </body>
