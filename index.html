@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +7,27 @@
 <title>INTRNEX | Internship Management System</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
+
 <script>
 tailwind.config = {
-  darkMode: 'class',
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Inter', 'sans-serif']
-      }
+    darkMode: "class",
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ["Inter", "sans-serif"]
+            },
+            colors: {
+                brand: {
+                    50: "#ecfeff",
+                    100: "#cffafe",
+                    500: "#06b6d4",
+                    600: "#0891b2",
+                    700: "#0e7490",
+                    900: "#164e63"
+                }
+            }
+        }
     }
-  }
 }
 </script>
 
@@ -24,170 +36,269 @@ tailwind.config = {
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-*{scroll-behavior:smooth}
-body{font-family:Inter,sans-serif}
-.glass{
-  background:rgba(255,255,255,.72);
-  backdrop-filter:blur(18px);
-  border:1px solid rgba(0,0,0,.06)
+* {
+    scroll-behavior: smooth;
 }
-.dark .glass{
-  background:rgba(15,23,42,.72);
-  border-color:rgba(255,255,255,.08)
+
+body {
+    font-family: Inter, sans-serif;
 }
-.gradient-text{
-  background:linear-gradient(90deg,#6366f1,#8b5cf6,#06b6d4);
-  -webkit-background-clip:text;
-  color:transparent
+
+.glass {
+    background: rgba(255,255,255,.78);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(14,116,144,.10);
 }
-.hero-grid{
-  background-image:
-  linear-gradient(rgba(99,102,241,.07) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(99,102,241,.07) 1px,transparent 1px);
-  background-size:40px 40px
+
+.dark .glass {
+    background: rgba(8,20,35,.82);
+    border-color: rgba(103,232,249,.10);
 }
-.modal{display:none}
-.modal.active{display:flex}
-#aiPanel{transform:translateY(120%);transition:.3s}
-#aiPanel.open{transform:translateY(0)}
+
+.gradient-text {
+    background: linear-gradient(90deg,#0891b2,#06b6d4,#2563eb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-grid {
+    background-image:
+        linear-gradient(rgba(8,145,178,.07) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(8,145,178,.07) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+.modal {
+    display: none;
+}
+
+.modal.active {
+    display: flex;
+}
+
+#aiPanel {
+    transform: translateY(120%);
+    transition: .3s ease;
+}
+
+#aiPanel.open {
+    transform: translateY(0);
+}
+
+.brand-btn {
+    background: linear-gradient(135deg,#0891b2,#2563eb);
+}
+
+.brand-btn:hover {
+    background: linear-gradient(135deg,#0e7490,#1d4ed8);
+}
+
+.footer-link:hover {
+    color: #06b6d4;
+}
 </style>
 </head>
 
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-white transition-colors duration-300">
 
-<!-- NAVBAR -->
+<!-- ================= NAVBAR ================= -->
+
 <nav class="fixed top-0 left-0 right-0 z-50 glass">
 <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between">
 
 <a href="#" onclick="showHome()" class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white flex items-center justify-center font-bold text-lg">
+
+<div class="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-600 to-blue-600 text-white flex items-center justify-center font-extrabold text-lg shadow-lg">
 IN
 </div>
+
 <div>
 <h1 class="font-extrabold text-lg">INTRNEX</h1>
-<p class="text-[10px] text-slate-500 dark:text-slate-400">INTERNSHIP PLATFORM</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">
+INTERNSHIP PLATFORM
+</p>
 </div>
+
 </a>
 
-<div class="hidden md:flex items-center gap-7 text-sm font-medium">
-<a href="#about" class="hover:text-indigo-600">About</a>
-<a href="#features" class="hover:text-indigo-600">Features</a>
-<a href="#internships" class="hover:text-indigo-600">Internships</a>
-<a href="#recruiters" class="hover:text-indigo-600">Recruiters</a>
-<a href="#contact" class="hover:text-indigo-600">Contact</a>
+<div class="hidden lg:flex items-center gap-7 text-sm font-medium">
+
+<a href="#about" class="hover:text-cyan-600">About</a>
+<a href="#features" class="hover:text-cyan-600">Features</a>
+<a href="#internships" class="hover:text-cyan-600">Internships</a>
+<a href="#recruiters" class="hover:text-cyan-600">Recruiters</a>
+<a href="#contact" class="hover:text-cyan-600">Contact</a>
+
 </div>
 
 <div class="flex items-center gap-2">
-<button onclick="toggleTheme()" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800">
+
+<button onclick="toggleTheme()"
+class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800">
 <span id="themeIcon">🌙</span>
 </button>
 
-<button onclick="openAuth('login')" class="hidden sm:block px-4 py-2 text-sm font-semibold">
-Login
+<button onclick="openAuth('login')"
+class="hidden sm:block px-4 py-2 text-sm font-semibold hover:text-cyan-600">
+Student Login
 </button>
 
-<button onclick="openAuth('register')" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold shadow-lg shadow-indigo-500/20">
+<button onclick="adminLogin()"
+class="hidden md:block px-4 py-2 rounded-xl border border-cyan-600 text-cyan-700 dark:text-cyan-400 text-sm font-semibold">
+Admin Login
+</button>
+
+<button onclick="openAuth('register')"
+class="px-5 py-2.5 rounded-xl brand-btn text-white text-sm font-semibold shadow-lg">
 Get Started
 </button>
-</div>
 
+</div>
 </div>
 </nav>
 
 
-<!-- MAIN HOME -->
+<!-- ================= HOME ================= -->
+
 <main id="homePage">
 
 <!-- HERO -->
+
 <section class="pt-32 pb-20 hero-grid relative overflow-hidden">
-<div class="absolute w-96 h-96 bg-indigo-500/20 blur-3xl rounded-full -top-20 -left-20"></div>
-<div class="absolute w-96 h-96 bg-cyan-500/10 blur-3xl rounded-full bottom-0 right-0"></div>
+
+<div class="absolute w-96 h-96 bg-cyan-500/20 blur-3xl rounded-full -top-20 -left-20"></div>
+<div class="absolute w-96 h-96 bg-blue-500/10 blur-3xl rounded-full bottom-0 right-0"></div>
 
 <div class="max-w-7xl mx-auto px-5 grid lg:grid-cols-2 gap-14 items-center relative">
 
 <div>
-<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 text-sm font-semibold mb-6">
+
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-50 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-400 text-sm font-semibold mb-6">
+
 <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+
 Smart Internship Management
+
 </div>
 
 <h2 class="text-5xl md:text-7xl font-extrabold leading-tight">
+
 Build Skills.
 <br>
+
 Find <span class="gradient-text">Opportunities.</span>
+
 </h2>
 
 <p class="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-xl">
+
 A modern platform connecting students with meaningful internships,
 professional recruiters and career opportunities.
+
 </p>
 
 <div class="flex flex-wrap gap-4 mt-8">
-<button onclick="scrollToInternships()" class="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold">
+
+<button onclick="scrollToInternships()"
+class="px-6 py-3.5 rounded-xl brand-btn text-white font-semibold">
 Explore Internships →
 </button>
 
-<button onclick="openAuth('register')" class="px-6 py-3.5 rounded-xl border border-slate-300 dark:border-slate-700 font-semibold">
-Create Account
+<button onclick="openAuth('login')"
+class="px-6 py-3.5 rounded-xl border border-cyan-600 text-cyan-700 dark:text-cyan-400 font-semibold">
+Student Login
 </button>
+
+<button onclick="adminLogin()"
+class="px-6 py-3.5 rounded-xl bg-slate-900 dark:bg-white dark:text-slate-900 text-white font-semibold">
+Admin Login
+</button>
+
 </div>
 
 <div class="flex gap-8 mt-10">
+
 <div>
 <h3 class="text-2xl font-bold">500+</h3>
 <p class="text-sm text-slate-500">Students</p>
 </div>
+
 <div>
 <h3 class="text-2xl font-bold">120+</h3>
 <p class="text-sm text-slate-500">Internships</p>
 </div>
+
 <div>
 <h3 class="text-2xl font-bold">50+</h3>
 <p class="text-sm text-slate-500">Recruiters</p>
 </div>
+
 </div>
+
 </div>
 
 
 <!-- HERO CARD -->
+
 <div class="relative">
+
 <div class="glass rounded-3xl p-6 shadow-2xl max-w-md mx-auto">
 
 <div class="flex justify-between items-center mb-6">
+
 <div>
 <p class="text-sm text-slate-500">AI Career Match</p>
 <h3 class="font-bold text-xl">Your next opportunity</h3>
 </div>
-<div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-500/20 flex items-center justify-center text-2xl">
+
+<div class="w-12 h-12 rounded-2xl bg-cyan-100 dark:bg-cyan-500/20 flex items-center justify-center text-2xl">
 🤖
 </div>
+
 </div>
 
 <div class="p-4 rounded-2xl bg-slate-100 dark:bg-slate-800 mb-4">
+
 <div class="flex items-center gap-3">
+
 <div class="w-12 h-12 rounded-xl bg-orange-500 text-white flex items-center justify-center font-bold">
 Py
 </div>
+
 <div>
 <h4 class="font-bold">Python AI Intern</h4>
 <p class="text-sm text-slate-500">TechNova Labs</p>
 </div>
+
 </div>
 
 <div class="flex gap-2 mt-4">
-<span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-xs text-indigo-600">Python</span>
-<span class="px-3 py-1 rounded-full bg-purple-100 dark:bg-purple-500/20 text-xs text-purple-600">AI/ML</span>
+
+<span class="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-500/20 text-xs text-cyan-700">
+Python
+</span>
+
+<span class="px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-500/20 text-xs text-blue-700">
+AI/ML
+</span>
+
 </div>
+
 </div>
 
 <div class="flex items-center justify-between">
+
 <div>
 <p class="text-xs text-slate-500">Match Score</p>
 <p class="font-bold text-green-500">94% Match</p>
 </div>
-<button onclick="openInternship(0)" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm">
+
+<button onclick="openInternship(0)"
+class="px-4 py-2 rounded-xl brand-btn text-white text-sm">
 View
 </button>
+
 </div>
 
 </div>
@@ -198,11 +309,17 @@ View
 
 
 <!-- ABOUT -->
+
 <section id="about" class="py-20">
+
 <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
 
 <div>
-<p class="text-indigo-600 font-semibold mb-2">ABOUT INTRNEX</p>
+
+<p class="text-cyan-600 font-semibold mb-2">
+ABOUT INTRNEX
+</p>
+
 <h2 class="text-4xl font-extrabold">
 One platform for your entire internship journey.
 </h2>
@@ -216,45 +333,64 @@ track applications and connect with recruiters from one professional platform.
 Recruiters can manage opportunities and applications while administrators
 get complete control over the internship ecosystem.
 </p>
+
 </div>
 
 <div class="grid grid-cols-2 gap-4">
-<div class="p-6 rounded-2xl bg-indigo-600 text-white">
+
+<div class="p-6 rounded-2xl bg-cyan-600 text-white">
 <div class="text-3xl mb-4">🎯</div>
 <h3 class="font-bold text-lg">Smart Matching</h3>
-<p class="text-sm text-indigo-100 mt-2">Find relevant opportunities faster.</p>
+<p class="text-sm text-cyan-100 mt-2">
+Find relevant opportunities faster.
+</p>
 </div>
 
 <div class="p-6 rounded-2xl bg-slate-900 text-white">
 <div class="text-3xl mb-4">📊</div>
 <h3 class="font-bold text-lg">Track Progress</h3>
-<p class="text-sm text-slate-300 mt-2">Monitor every application.</p>
+<p class="text-sm text-slate-300 mt-2">
+Monitor every application.
+</p>
 </div>
 
 <div class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-800">
 <div class="text-3xl mb-4">🏢</div>
 <h3 class="font-bold">Top Recruiters</h3>
-<p class="text-sm text-slate-500 mt-2">Connect with companies.</p>
+<p class="text-sm text-slate-500 mt-2">
+Connect with companies.
+</p>
 </div>
 
-<div class="p-6 rounded-2xl bg-cyan-500 text-white">
+<div class="p-6 rounded-2xl bg-blue-600 text-white">
 <div class="text-3xl mb-4">🤖</div>
 <h3 class="font-bold">AI Assistant</h3>
-<p class="text-sm text-cyan-50 mt-2">Get instant career guidance.</p>
-</div>
+<p class="text-sm text-blue-100 mt-2">
+Get instant career guidance.
+</p>
 </div>
 
+</div>
 </div>
 </section>
 
 
 <!-- FEATURES -->
+
 <section id="features" class="py-20 bg-slate-100 dark:bg-slate-900/50">
+
 <div class="max-w-7xl mx-auto px-5">
 
 <div class="text-center mb-12">
-<p class="text-indigo-600 font-semibold">POWERFUL FEATURES</p>
-<h2 class="text-4xl font-extrabold mt-2">Everything you need</h2>
+
+<p class="text-cyan-600 font-semibold">
+POWERFUL FEATURES
+</p>
+
+<h2 class="text-4xl font-extrabold mt-2">
+Everything you need
+</h2>
+
 </div>
 
 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -262,25 +398,33 @@ get complete control over the internship ecosystem.
 <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
 <div class="text-3xl">🔎</div>
 <h3 class="font-bold mt-4">Smart Search</h3>
-<p class="text-sm text-slate-500 mt-2">Search internships by skill, location and category.</p>
+<p class="text-sm text-slate-500 mt-2">
+Search internships by skill, location and category.
+</p>
 </div>
 
 <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
 <div class="text-3xl">📱</div>
 <h3 class="font-bold mt-4">Easy Applications</h3>
-<p class="text-sm text-slate-500 mt-2">Apply to opportunities in seconds.</p>
+<p class="text-sm text-slate-500 mt-2">
+Apply to opportunities in seconds.
+</p>
 </div>
 
 <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
 <div class="text-3xl">📈</div>
 <h3 class="font-bold mt-4">Application Tracking</h3>
-<p class="text-sm text-slate-500 mt-2">Track submitted, accepted and rejected applications.</p>
+<p class="text-sm text-slate-500 mt-2">
+Track submitted, accepted and rejected applications.
+</p>
 </div>
 
 <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
 <div class="text-3xl">🤖</div>
 <h3 class="font-bold mt-4">AI Assistant</h3>
-<p class="text-sm text-slate-500 mt-2">Get personalized internship guidance.</p>
+<p class="text-sm text-slate-500 mt-2">
+Get personalized internship guidance.
+</p>
 </div>
 
 </div>
@@ -289,54 +433,96 @@ get complete control over the internship ecosystem.
 
 
 <!-- INTERNSHIPS -->
+
 <section id="internships" class="py-20">
+
 <div class="max-w-7xl mx-auto px-5">
 
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-10">
+
 <div>
-<p class="text-indigo-600 font-semibold">OPPORTUNITIES</p>
-<h2 class="text-4xl font-extrabold mt-2">Featured Internships</h2>
+
+<p class="text-cyan-600 font-semibold">
+OPPORTUNITIES
+</p>
+
+<h2 class="text-4xl font-extrabold mt-2">
+Featured Internships
+</h2>
+
 </div>
 
-<div class="flex gap-2">
-<input id="searchInput"
+<div class="flex flex-col sm:flex-row gap-2">
+
+<input
+id="searchInput"
 oninput="renderInternships()"
-placeholder="Search internship..."
+placeholder="🔎 Search internship, company or skill..."
+class="px-4 py-3 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 outline-none w-full sm:w-80">
+
+<select
+id="categoryFilter"
+onchange="renderInternships()"
 class="px-4 py-3 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 outline-none">
 
-<select id="categoryFilter" onchange="renderInternships()"
-class="px-4 py-3 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 outline-none">
 <option value="all">All Categories</option>
 <option value="AI/ML">AI/ML</option>
 <option value="Web Development">Web Development</option>
 <option value="Data Science">Data Science</option>
 <option value="Python">Python</option>
+
 </select>
+
 </div>
 </div>
 
-<div id="internshipGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+<div id="internshipGrid"
+class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+</div>
 
 </div>
 </section>
 
 
 <!-- RECRUITERS -->
+
 <section id="recruiters" class="py-20 bg-slate-100 dark:bg-slate-900/50">
+
 <div class="max-w-7xl mx-auto px-5">
 
 <div class="text-center mb-12">
-<p class="text-indigo-600 font-semibold">OUR NETWORK</p>
-<h2 class="text-4xl font-extrabold mt-2">Trusted Recruiters</h2>
+
+<p class="text-cyan-600 font-semibold">
+OUR NETWORK
+</p>
+
+<h2 class="text-4xl font-extrabold mt-2">
+Trusted Recruiters
+</h2>
+
 </div>
 
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
 
-<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">TechNova</div>
-<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">CodeCraft</div>
-<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">DataSphere</div>
-<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">CloudCore</div>
-<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">AIWorks</div>
+<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">
+TechNova
+</div>
+
+<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">
+CodeCraft
+</div>
+
+<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">
+DataSphere
+</div>
+
+<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">
+CloudCore
+</div>
+
+<div class="h-24 rounded-2xl bg-white dark:bg-slate-900 flex items-center justify-center font-bold">
+AIWorks
+</div>
 
 </div>
 </div>
@@ -344,40 +530,82 @@ class="px-4 py-3 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 d
 
 
 <!-- CONTACT -->
+
 <section id="contact" class="py-20">
+
 <div class="max-w-4xl mx-auto px-5">
 
 <div class="text-center">
-<p class="text-indigo-600 font-semibold">GET IN TOUCH</p>
-<h2 class="text-4xl font-extrabold mt-2">Have a question?</h2>
-<p class="text-slate-500 mt-3">We are here to help students and recruiters.</p>
+
+<p class="text-cyan-600 font-semibold">
+GET IN TOUCH
+</p>
+
+<h2 class="text-4xl font-extrabold mt-2">
+Have a question?
+</h2>
+
+<p class="text-slate-500 mt-3">
+We are here to help students and recruiters.
+</p>
+
 </div>
 
 <div class="mt-10 grid md:grid-cols-2 gap-5">
-<input placeholder="Your Name" class="p-4 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700">
-<input placeholder="Email Address" class="p-4 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700">
-<textarea rows="5" placeholder="Your Message" class="md:col-span-2 p-4 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700"></textarea>
-<button onclick="toast('Message submitted successfully!')" class="md:col-span-2 py-4 rounded-xl bg-indigo-600 text-white font-semibold">
-Send Message
-</button>
-</div>
 
+<input
+placeholder="Your Name"
+class="p-4 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700">
+
+<input
+placeholder="Email Address"
+class="p-4 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700">
+
+<textarea
+rows="5"
+placeholder="Your Message"
+class="md:col-span-2 p-4 rounded-xl border bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700"></textarea>
+
+<button
+onclick="toast('Message submitted successfully!')"
+class="md:col-span-2 py-4 rounded-xl brand-btn text-white font-semibold">
+
+Send Message
+
+</button>
+
+</div>
 </div>
 </section>
 
 </main>
 
 
-<!-- DASHBOARD -->
+<!-- ================= DASHBOARD ================= -->
+
 <section id="dashboardPage" class="hidden min-h-screen pt-28 pb-20">
+
 <div class="max-w-7xl mx-auto px-5">
 
 <div class="flex justify-between items-center mb-8">
+
 <div>
-<p class="text-indigo-600 font-semibold">STUDENT PORTAL</p>
-<h2 class="text-4xl font-extrabold">Welcome back 👋</h2>
+
+<p class="text-cyan-600 font-semibold">
+STUDENT PORTAL
+</p>
+
+<h2 class="text-4xl font-extrabold">
+Welcome back 👋
+</h2>
+
 </div>
-<button onclick="logout()" class="px-4 py-2 rounded-xl bg-red-500 text-white">Logout</button>
+
+<button onclick="logout()"
+class="px-4 py-2 rounded-xl bg-red-500 text-white">
+Logout
+</button>
+
 </div>
 
 <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
@@ -407,40 +635,76 @@ Send Message
 <div class="grid lg:grid-cols-3 gap-6">
 
 <div class="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-slate-900 border dark:border-slate-800">
+
 <div class="flex justify-between mb-5">
-<h3 class="text-xl font-bold">Recent Applications</h3>
-<button onclick="showHome();scrollToInternships()" class="text-indigo-600 text-sm">Find more</button>
+
+<h3 class="text-xl font-bold">
+Recent Applications
+</h3>
+
+<button onclick="showHome();scrollToInternships()"
+class="text-cyan-600 text-sm">
+Find more
+</button>
+
 </div>
 
 <div class="space-y-3">
-<div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
-<div>
-<h4 class="font-semibold">Python AI Intern</h4>
-<p class="text-sm text-slate-500">TechNova Labs</p>
-</div>
-<span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs">Pending</span>
-</div>
 
 <div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
+
 <div>
-<h4 class="font-semibold">Data Science Intern</h4>
-<p class="text-sm text-slate-500">DataSphere</p>
+<h4 class="font-semibold">
+Python AI Intern
+</h4>
+<p class="text-sm text-slate-500">
+TechNova Labs
+</p>
 </div>
-<span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs">Shortlisted</span>
+
+<span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs">
+Pending
+</span>
+
+</div>
+
+<div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-slate-800">
+
+<div>
+<h4 class="font-semibold">
+Data Science Intern
+</h4>
+<p class="text-sm text-slate-500">
+DataSphere
+</p>
+</div>
+
+<span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+Shortlisted
+</span>
+
 </div>
 
 </div>
 </div>
 
-<div class="p-6 rounded-2xl bg-gradient-to-br from-indigo-600 to-violet-600 text-white">
+<div class="p-6 rounded-2xl bg-gradient-to-br from-cyan-600 to-blue-600 text-white">
+
 <div class="text-4xl">🤖</div>
-<h3 class="text-xl font-bold mt-5">AI Internship Assistant</h3>
-<p class="text-indigo-100 text-sm mt-2">
+
+<h3 class="text-xl font-bold mt-5">
+AI Internship Assistant
+</h3>
+
+<p class="text-cyan-100 text-sm mt-2">
 Need help finding the right internship?
 </p>
-<button onclick="toggleAI()" class="mt-6 w-full py-3 rounded-xl bg-white text-indigo-600 font-semibold">
+
+<button onclick="toggleAI()"
+class="mt-6 w-full py-3 rounded-xl bg-white text-cyan-700 font-semibold">
 Ask AI Assistant
 </button>
+
 </div>
 
 </div>
@@ -448,66 +712,134 @@ Ask AI Assistant
 </section>
 
 
-<!-- AUTH MODAL -->
-<div id="authModal" class="modal fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm items-center justify-center p-5">
+<!-- ================= AUTH MODAL ================= -->
+
+<div id="authModal"
+class="modal fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm items-center justify-center p-5">
 
 <div class="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl p-7 shadow-2xl">
 
 <div class="flex justify-between items-center mb-7">
+
 <div>
-<h2 id="authTitle" class="text-2xl font-extrabold">Welcome back</h2>
-<p id="authSubtitle" class="text-sm text-slate-500 mt-1">Login to your account</p>
+
+<h2 id="authTitle"
+class="text-2xl font-extrabold">
+Welcome back
+</h2>
+
+<p id="authSubtitle"
+class="text-sm text-slate-500 mt-1">
+Login to your account
+</p>
+
 </div>
-<button onclick="closeAuth()" class="text-2xl text-slate-400">×</button>
+
+<button onclick="closeAuth()"
+class="text-2xl text-slate-400">
+×
+</button>
+
 </div>
 
 <div id="registerFields" class="hidden">
-<input id="regName" placeholder="Full Name" class="w-full p-3.5 mb-3 rounded-xl border bg-transparent">
+
+<input
+id="regName"
+placeholder="Full Name"
+class="w-full p-3.5 mb-3 rounded-xl border bg-transparent">
+
 </div>
 
-<input id="authEmail" type="email" placeholder="Email Address" class="w-full p-3.5 mb-3 rounded-xl border bg-transparent">
+<input
+id="authEmail"
+type="email"
+placeholder="Email Address"
+class="w-full p-3.5 mb-3 rounded-xl border bg-transparent">
 
-<input id="authPassword" type="password" placeholder="Password" class="w-full p-3.5 mb-4 rounded-xl border bg-transparent">
+<input
+id="authPassword"
+type="password"
+placeholder="Password"
+class="w-full p-3.5 mb-4 rounded-xl border bg-transparent">
 
-<button onclick="submitAuth()" class="w-full py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold">
+<button
+onclick="submitAuth()"
+class="w-full py-3.5 rounded-xl brand-btn text-white font-semibold">
 Continue
 </button>
 
 <div class="text-center mt-5 text-sm text-slate-500">
-<span id="switchText">Don't have an account?</span>
-<button onclick="switchAuth()" id="switchButton" class="text-indigo-600 font-semibold">Register</button>
+
+<span id="switchText">
+Don't have an account?
+</span>
+
+<button
+onclick="switchAuth()"
+id="switchButton"
+class="text-cyan-600 font-semibold">
+Register
+</button>
+
 </div>
 
 <div class="my-5 flex items-center gap-3">
+
 <div class="h-px bg-slate-200 dark:bg-slate-700 flex-1"></div>
+
 <span class="text-xs text-slate-400">OR</span>
+
 <div class="h-px bg-slate-200 dark:bg-slate-700 flex-1"></div>
+
 </div>
 
-<button onclick="adminLogin()" class="w-full py-3 rounded-xl border border-slate-300 dark:border-slate-700 font-semibold">
+<button
+onclick="adminLogin()"
+class="w-full py-3 rounded-xl border border-cyan-600 text-cyan-700 dark:text-cyan-400 font-semibold">
+
 🔐 Admin Login
+
 </button>
 
 </div>
 </div>
 
 
-<!-- INTERNSHIP DETAILS MODAL -->
-<div id="internshipModal" class="modal fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm items-center justify-center p-5">
+<!-- ================= INTERNSHIP MODAL ================= -->
+
+<div id="internshipModal"
+class="modal fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm items-center justify-center p-5">
 
 <div class="w-full max-w-2xl bg-white dark:bg-slate-900 rounded-3xl p-7 shadow-2xl max-h-[90vh] overflow-y-auto">
 
 <div class="flex justify-between">
-<div id="detailLogo" class="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-white"></div>
-<button onclick="closeInternship()" class="text-2xl text-slate-400">×</button>
+
+<div id="detailLogo"
+class="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">
 </div>
 
-<h2 id="detailTitle" class="text-3xl font-extrabold mt-6"></h2>
-<p id="detailCompany" class="text-indigo-600 font-semibold mt-2"></p>
+<button onclick="closeInternship()"
+class="text-2xl text-slate-400">
+×
+</button>
 
-<div class="flex flex-wrap gap-2 mt-5" id="detailTags"></div>
+</div>
+
+<h2 id="detailTitle"
+class="text-3xl font-extrabold mt-6">
+</h2>
+
+<p id="detailCompany"
+class="text-cyan-600 font-semibold mt-2">
+</p>
+
+<div class="flex flex-wrap gap-2 mt-5"
+id="detailTags">
+</div>
 
 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-7">
+
 <div class="p-4 rounded-xl bg-slate-100 dark:bg-slate-800">
 <p class="text-xs text-slate-500">Location</p>
 <p id="detailLocation" class="font-semibold mt-1"></p>
@@ -527,12 +859,19 @@ Continue
 <p class="text-xs text-slate-500">Stipend</p>
 <p id="detailStipend" class="font-semibold mt-1"></p>
 </div>
+
 </div>
 
-<h3 class="font-bold text-xl mt-7">About this Internship</h3>
-<p id="detailDescription" class="text-slate-600 dark:text-slate-400 mt-3 leading-7"></p>
+<h3 class="font-bold text-xl mt-7">
+About this Internship
+</h3>
 
-<button onclick="applyInternship()" class="w-full mt-7 py-4 rounded-xl bg-indigo-600 text-white font-semibold">
+<p id="detailDescription"
+class="text-slate-600 dark:text-slate-400 mt-3 leading-7">
+</p>
+
+<button onclick="applyInternship()"
+class="w-full mt-7 py-4 rounded-xl brand-btn text-white font-semibold">
 Apply for Internship
 </button>
 
@@ -540,58 +879,210 @@ Apply for Internship
 </div>
 
 
-<!-- AI ASSISTANT -->
-<div id="aiPanel" class="fixed bottom-24 right-5 z-[90] w-[350px] max-w-[calc(100vw-40px)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-2xl overflow-hidden">
+<!-- ================= AI ASSISTANT ================= -->
 
-<div class="p-5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white flex justify-between">
+<div id="aiPanel"
+class="fixed bottom-24 right-5 z-[90] w-[350px] max-w-[calc(100vw-40px)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-3xl shadow-2xl overflow-hidden">
+
+<div class="p-5 bg-gradient-to-r from-cyan-600 to-blue-600 text-white flex justify-between">
+
 <div>
-<h3 class="font-bold">🤖 AI Assistant</h3>
-<p class="text-xs text-indigo-100">Internship Career Guide</p>
-</div>
-<button onclick="toggleAI()" class="text-xl">×</button>
+
+<h3 class="font-bold">
+🤖 AI Assistant
+</h3>
+
+<p class="text-xs text-cyan-100">
+Internship Career Guide
+</p>
+
 </div>
 
-<div id="aiMessages" class="h-72 overflow-y-auto p-4 space-y-3">
+<button onclick="toggleAI()"
+class="text-xl">
+×
+</button>
+
+</div>
+
+<div id="aiMessages"
+class="h-72 overflow-y-auto p-4 space-y-3">
 
 <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-sm">
-Hi! 👋 I'm your AI Internship Assistant. How can I help you?
+
+Hi! 👋 I'm your AI Internship Assistant.
+How can I help you?
+
 </div>
 
 </div>
 
 <div class="p-3 border-t dark:border-slate-700 flex gap-2">
-<input id="aiInput" onkeydown="if(event.key==='Enter')sendAI()"
+
+<input
+id="aiInput"
+onkeydown="if(event.key==='Enter')sendAI()"
 placeholder="Ask something..."
 class="flex-1 px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 outline-none text-sm">
 
-<button onclick="sendAI()" class="px-4 rounded-xl bg-indigo-600 text-white">
+<button
+onclick="sendAI()"
+class="px-4 rounded-xl brand-btn text-white">
 ➤
 </button>
-</div>
 
 </div>
+</div>
 
-<button onclick="toggleAI()" class="fixed bottom-6 right-6 z-[80] w-16 h-16 rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 text-white text-2xl shadow-2xl hover:scale-105 transition">
+
+<!-- AI BUTTON -->
+
+<button
+onclick="toggleAI()"
+class="fixed bottom-6 right-6 z-[80] w-16 h-16 rounded-full bg-gradient-to-br from-cyan-600 to-blue-600 text-white text-2xl shadow-2xl hover:scale-105 transition">
 🤖
 </button>
 
 
-<!-- TOAST -->
-<div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] hidden px-5 py-3 rounded-xl bg-slate-900 text-white text-sm shadow-xl"></div>
+<!-- ================= TOAST ================= -->
 
-
-<!-- FOOTER -->
-<footer class="border-t border-slate-200 dark:border-slate-800 py-8">
-<div class="max-w-7xl mx-auto px-5 flex flex-col md:flex-row justify-between gap-4">
-<div>
-<h3 class="font-extrabold">INTRNEX</h3>
-<p class="text-sm text-slate-500 mt-1">Smart Internship Management Platform</p>
+<div id="toast"
+class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[200] hidden px-5 py-3 rounded-xl bg-slate-900 text-white text-sm shadow-xl">
 </div>
 
-<p class="text-sm text-slate-500">
-© 2026 INTRNEX. All rights reserved.
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+
+<div class="max-w-7xl mx-auto px-5 py-12">
+
+<div class="grid md:grid-cols-3 gap-10">
+
+<!-- BRAND -->
+
+<div>
+
+<div class="flex items-center gap-3">
+
+<div class="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-600 to-blue-600 text-white flex items-center justify-center font-extrabold">
+IN
+</div>
+
+<div>
+<h3 class="font-extrabold text-xl">
+INTRNEX
+</h3>
+
+<p class="text-xs text-slate-500">
+INTERNSHIP MANAGEMENT SYSTEM
 </p>
 </div>
+
+</div>
+
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-5 leading-6">
+A professional internship management platform designed
+to connect students, recruiters and opportunities.
+</p>
+
+</div>
+
+
+<!-- CONTACT -->
+
+<div>
+
+<h3 class="font-bold text-lg mb-5">
+Contact Information
+</h3>
+
+<div class="space-y-4 text-sm text-slate-500 dark:text-slate-400">
+
+<p class="flex gap-3">
+<span>👩‍💻</span>
+<span>
+<strong class="text-slate-700 dark:text-slate-200">
+Developed by
+</strong>
+<br>
+Manali Patil
+</span>
+</p>
+
+<p class="flex gap-3">
+<span>🏫</span>
+<span>
+<strong class="text-slate-700 dark:text-slate-200">
+College
+</strong>
+<br>
+Ashokrav Mane Polytechnic
+</span>
+</p>
+
+</div>
+
+</div>
+
+
+<!-- CONTACT DETAILS -->
+
+<div>
+
+<h3 class="font-bold text-lg mb-5">
+Get In Touch
+</h3>
+
+<div class="space-y-4 text-sm">
+
+<a href="mailto:patilmanalis1102@gmail.com"
+class="footer-link flex items-center gap-3 text-slate-500 dark:text-slate-400 transition">
+<span>✉️</span>
+patilmanalis1102@gmail.com
+</a>
+
+<a href="tel:7030669372"
+class="footer-link flex items-center gap-3 text-slate-500 dark:text-slate-400 transition">
+<span>📞</span>
+7030669372
+</a>
+
+</div>
+
+<div class="flex gap-3 mt-6">
+
+<a href="#about"
+class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-sm">
+About
+</a>
+
+<a href="#contact"
+class="px-4 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-sm">
+Contact
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="border-t border-slate-200 dark:border-slate-800 mt-10 pt-6 flex flex-col md:flex-row justify-between gap-3 text-sm text-slate-500">
+
+<p>
+© 2026 INTRNEX. All rights reserved.
+</p>
+
+<p>
+Developed with ❤️ by <strong>Manali Patil</strong>
+</p>
+
+</div>
+
+</div>
+
 </footer>
 
 
@@ -691,17 +1182,25 @@ function toggleTheme(){
 
 document.documentElement.classList.toggle("dark");
 
-const dark=document.documentElement.classList.contains("dark");
+const dark =
+document.documentElement.classList.contains("dark");
 
-localStorage.setItem("theme",dark?"dark":"light");
+localStorage.setItem(
+"theme",
+dark ? "dark" : "light"
+);
 
-document.getElementById("themeIcon").textContent=dark?"☀️":"🌙";
+document.getElementById("themeIcon").textContent =
+dark ? "☀️" : "🌙";
 
 }
 
 if(localStorage.getItem("theme")==="dark"){
+
 document.documentElement.classList.add("dark");
+
 document.getElementById("themeIcon").textContent="☀️";
+
 }
 
 
@@ -709,21 +1208,27 @@ document.getElementById("themeIcon").textContent="☀️";
 
 function renderInternships(){
 
-const grid=document.getElementById("internshipGrid");
+const grid =
+document.getElementById("internshipGrid");
 
-const search=document.getElementById("searchInput").value.toLowerCase();
+const search =
+document.getElementById("searchInput")
+.value.toLowerCase();
 
-const category=document.getElementById("categoryFilter").value;
+const category =
+document.getElementById("categoryFilter").value;
 
-const filtered=internships.filter(i=>{
+const filtered =
+internships.filter(i=>{
 
-const matchSearch=
+const matchSearch =
 i.title.toLowerCase().includes(search) ||
 i.company.toLowerCase().includes(search) ||
 i.tags.join(" ").toLowerCase().includes(search);
 
-const matchCategory=
-category==="all" || i.category===category;
+const matchCategory =
+category==="all" ||
+i.category===category;
 
 return matchSearch && matchCategory;
 
@@ -734,19 +1239,31 @@ grid.innerHTML="";
 if(filtered.length===0){
 
 grid.innerHTML=`
+
 <div class="col-span-full text-center py-12">
+
 <div class="text-5xl">🔍</div>
-<h3 class="font-bold text-xl mt-4">No internships found</h3>
-<p class="text-slate-500 mt-2">Try another search.</p>
-</div>`;
+
+<h3 class="font-bold text-xl mt-4">
+No internships found
+</h3>
+
+<p class="text-slate-500 mt-2">
+Try another search.
+</p>
+
+</div>
+
+`;
 
 return;
 
 }
 
-filtered.forEach((i,index)=>{
+filtered.forEach(i=>{
 
-const originalIndex=internships.indexOf(i);
+const originalIndex =
+internships.indexOf(i);
 
 grid.innerHTML+=`
 
@@ -765,20 +1282,23 @@ Open
 
 </div>
 
-<h3 class="font-bold text-xl mt-6 group-hover:text-indigo-600">
+<h3 class="font-bold text-xl mt-6 group-hover:text-cyan-600">
 ${i.title}
 </h3>
 
-<p class="text-indigo-600 text-sm font-medium mt-1">
+<p class="text-cyan-600 text-sm font-medium mt-1">
 ${i.company}
 </p>
 
 <div class="flex flex-wrap gap-2 mt-4">
 
 ${i.tags.map(t=>`
+
 <span class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800">
 ${t}
-</span>`).join("")}
+</span>
+
+`).join("")}
 
 </div>
 
@@ -809,30 +1329,42 @@ const i=internships[index];
 
 currentInternship=i;
 
-document.getElementById("detailLogo").className=
+document.getElementById("detailLogo").className =
 `w-16 h-16 rounded-2xl ${i.color} flex items-center justify-center text-2xl font-bold text-white`;
 
 document.getElementById("detailLogo").textContent=i.logo;
 
 document.getElementById("detailTitle").textContent=i.title;
+
 document.getElementById("detailCompany").textContent=i.company;
+
 document.getElementById("detailLocation").textContent=i.location;
+
 document.getElementById("detailDuration").textContent=i.duration;
+
 document.getElementById("detailStipend").textContent=i.stipend;
+
 document.getElementById("detailDescription").textContent=i.description;
 
-document.getElementById("detailTags").innerHTML=
+document.getElementById("detailTags").innerHTML =
 i.tags.map(t=>`
-<span class="px-3 py-1 rounded-full bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 text-sm">
-${t}
-</span>`).join("");
 
-document.getElementById("internshipModal").classList.add("active");
+<span class="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-500/20 text-cyan-700 dark:text-cyan-400 text-sm">
+${t}
+</span>
+
+`).join("");
+
+document.getElementById("internshipModal")
+.classList.add("active");
 
 }
 
 function closeInternship(){
-document.getElementById("internshipModal").classList.remove("active");
+
+document.getElementById("internshipModal")
+.classList.remove("active");
+
 }
 
 function applyInternship(){
@@ -860,7 +1392,8 @@ function openAuth(mode){
 
 authMode=mode;
 
-document.getElementById("authModal").classList.add("active");
+document.getElementById("authModal")
+.classList.add("active");
 
 updateAuthUI();
 
@@ -868,13 +1401,17 @@ updateAuthUI();
 
 function closeAuth(){
 
-document.getElementById("authModal").classList.remove("active");
+document.getElementById("authModal")
+.classList.remove("active");
 
 }
 
 function switchAuth(){
 
-authMode=authMode==="login"?"register":"login";
+authMode =
+authMode==="login"
+? "register"
+: "login";
 
 updateAuthUI();
 
@@ -882,28 +1419,41 @@ updateAuthUI();
 
 function updateAuthUI(){
 
-const register=authMode==="register";
+const register =
+authMode==="register";
 
-document.getElementById("authTitle").textContent=
-register?"Create your account":"Welcome back";
+document.getElementById("authTitle").textContent =
+register
+? "Create your account"
+: "Welcome back";
 
-document.getElementById("authSubtitle").textContent=
-register?"Join INTRNEX today":"Login to your account";
+document.getElementById("authSubtitle").textContent =
+register
+? "Join INTRNEX today"
+: "Login to your account";
 
-document.getElementById("registerFields").classList.toggle("hidden",!register);
+document.getElementById("registerFields")
+.classList.toggle("hidden",!register);
 
-document.getElementById("switchText").textContent=
-register?"Already have an account?":"Don't have an account?";
+document.getElementById("switchText").textContent =
+register
+? "Already have an account?"
+: "Don't have an account?";
 
-document.getElementById("switchButton").textContent=
-register?"Login":"Register";
+document.getElementById("switchButton").textContent =
+register
+? "Login"
+: "Register";
 
 }
 
 function submitAuth(){
 
-const email=document.getElementById("authEmail").value;
-const password=document.getElementById("authPassword").value;
+const email =
+document.getElementById("authEmail").value;
+
+const password =
+document.getElementById("authPassword").value;
 
 if(!email || !password){
 
@@ -915,7 +1465,8 @@ return;
 
 if(authMode==="register"){
 
-const name=document.getElementById("regName").value;
+const name =
+document.getElementById("regName").value;
 
 if(!name){
 
@@ -925,10 +1476,13 @@ return;
 
 }
 
-localStorage.setItem("user",JSON.stringify({
+localStorage.setItem(
+"user",
+JSON.stringify({
 name:name,
 email:email
-}));
+})
+);
 
 toast("Account created successfully! 🎉");
 
@@ -938,10 +1492,13 @@ setTimeout(showDashboard,500);
 
 }else{
 
-localStorage.setItem("user",JSON.stringify({
+localStorage.setItem(
+"user",
+JSON.stringify({
 name:email.split("@")[0],
 email:email
-}));
+})
+);
 
 toast("Login successful!");
 
@@ -958,11 +1515,13 @@ setTimeout(showDashboard,500);
 
 function adminLogin(){
 
-const email=prompt("Admin Email:");
+const email =
+prompt("Admin Email:");
 
-if(!email)return;
+if(!email) return;
 
-const password=prompt("Admin Password:");
+const password =
+prompt("Admin Password:");
 
 if(password==="admin123"){
 
@@ -985,8 +1544,11 @@ toast("Invalid admin credentials.");
 
 function showDashboard(){
 
-document.getElementById("homePage").classList.add("hidden");
-document.getElementById("dashboardPage").classList.remove("hidden");
+document.getElementById("homePage")
+.classList.add("hidden");
+
+document.getElementById("dashboardPage")
+.classList.remove("hidden");
 
 window.scrollTo(0,0);
 
@@ -994,8 +1556,11 @@ window.scrollTo(0,0);
 
 function showHome(){
 
-document.getElementById("dashboardPage").classList.add("hidden");
-document.getElementById("homePage").classList.remove("hidden");
+document.getElementById("dashboardPage")
+.classList.add("hidden");
+
+document.getElementById("homePage")
+.classList.remove("hidden");
 
 window.scrollTo(0,0);
 
@@ -1016,54 +1581,75 @@ toast("Logged out successfully.");
 
 function toggleAI(){
 
-document.getElementById("aiPanel").classList.toggle("open");
+document.getElementById("aiPanel")
+.classList.toggle("open");
 
 }
 
 function sendAI(){
 
-const input=document.getElementById("aiInput");
+const input =
+document.getElementById("aiInput");
 
-const message=input.value.trim();
+const message =
+input.value.trim();
 
 if(!message)return;
 
-const messages=document.getElementById("aiMessages");
+const messages =
+document.getElementById("aiMessages");
 
 messages.innerHTML+=`
+
 <div class="flex justify-end">
-<div class="p-3 rounded-2xl bg-indigo-600 text-white text-sm max-w-[85%]">
+
+<div class="p-3 rounded-2xl bg-cyan-600 text-white text-sm max-w-[85%]">
 ${escapeHTML(message)}
 </div>
-</div>`;
+
+</div>
+
+`;
 
 input.value="";
 
 setTimeout(()=>{
 
-let answer=
+let answer =
 "I can help you find internships, understand requirements, improve your profile, prepare for interviews and track applications.";
 
 const q=message.toLowerCase();
 
 if(q.includes("python"))
-answer="For Python internships, focus on Python, Flask, APIs, SQL, Git and at least 2 practical projects.";
+
+answer =
+"For Python internships, focus on Python, Flask, APIs, SQL, Git and at least 2 practical projects.";
 
 else if(q.includes("ai") || q.includes("ml"))
-answer="For AI/ML internships, build skills in Python, NumPy, Pandas, ML algorithms, model evaluation and practical projects.";
+
+answer =
+"For AI/ML internships, build skills in Python, NumPy, Pandas, ML algorithms, model evaluation and practical projects.";
 
 else if(q.includes("resume"))
-answer="Keep your resume focused: skills, projects, internship experience, certifications and measurable achievements.";
+
+answer =
+"Keep your resume focused: skills, projects, internship experience, certifications and measurable achievements.";
 
 else if(q.includes("internship"))
-answer="You can explore internships above and filter them by category, skills and location.";
+
+answer =
+"You can explore internships above and filter them by category, skills and location.";
 
 messages.innerHTML+=`
+
 <div class="p-3 rounded-2xl bg-slate-100 dark:bg-slate-800 text-sm">
 ${answer}
-</div>`;
+</div>
 
-messages.scrollTop=messages.scrollHeight;
+`;
+
+messages.scrollTop =
+messages.scrollHeight;
 
 },500);
 
@@ -1071,7 +1657,8 @@ messages.scrollTop=messages.scrollHeight;
 
 function escapeHTML(text){
 
-const div=document.createElement("div");
+const div =
+document.createElement("div");
 
 div.textContent=text;
 
@@ -1084,7 +1671,8 @@ return div.innerHTML;
 
 function toast(message){
 
-const t=document.getElementById("toast");
+const t =
+document.getElementById("toast");
 
 t.textContent=message;
 
@@ -1098,7 +1686,8 @@ t.classList.add("hidden");
 
 function scrollToInternships(){
 
-document.getElementById("internships").scrollIntoView({
+document.getElementById("internships")
+.scrollIntoView({
 behavior:"smooth"
 });
 
@@ -1113,3 +1702,4 @@ renderInternships();
 
 </body>
 </html>
+
