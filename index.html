@@ -1453,7 +1453,7 @@ return;
 try{
 
 await window.firebaseFns.addDoc(
-collection(window.firebaseDB,"applications"),
+window.firebaseFns.collection(window.firebaseDB,"applications"),
 {
 studentId:user.uid,
 studentName:user.displayName || user.email.split("@")[0],
@@ -1461,7 +1461,7 @@ studentEmail:user.email,
 internship:currentInternship.title,
 company:currentInternship.company,
 location:currentInternship.location,
-appliedOn:serverTimestamp(),
+appliedOn:window.firebaseFns.serverTimestamp(),
 status:"Pending"
 }
 );
