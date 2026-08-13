@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,9 +129,6 @@ INTERNSHIP PLATFORM
 <a href="#internships" class="hover:text-cyan-600">Internships</a>
 <a href="#recruiters" class="hover:text-cyan-600">Recruiters</a>
 <a href="#contact" class="hover:text-cyan-600">Contact</a>
-    <a href="#profile" onclick="openProfile()" class="hover:text-indigo-600">
-       Profile
-   </a>   
 
 </div>
 
@@ -579,92 +576,6 @@ Send Message
 
 </div>
 </div>
-</section>
-
-    <section id="profile" class="py-20 bg-slate-100 dark:bg-slate-900/50">
-  <div class="max-w-5xl mx-auto px-5">
-
-    <div class="text-center mb-10">
-      <p class="text-indigo-600 font-semibold">STUDENT PROFILE</p>
-      <h2 class="text-4xl font-extrabold mt-2">
-        Build Your Professional Profile
-      </h2>
-      <p class="text-slate-500 mt-3">
-        Complete your profile and make your internship applications stronger.
-      </p>
-    </div>
-
-    <div class="bg-white dark:bg-slate-900 rounded-3xl p-7 border
-                border-slate-200 dark:border-slate-800 shadow-xl">
-
-      <div class="flex flex-col md:flex-row items-center gap-6">
-
-        <div class="w-24 h-24 rounded-full bg-gradient-to-br
-                    from-indigo-600 to-violet-600 text-white
-                    flex items-center justify-center text-3xl font-bold">
-          MP
-        </div>
-
-        <div class="text-center md:text-left">
-          <h3 id="profileName" class="text-2xl font-bold">
-            Student Profile
-          </h3>
-
-          <p id="profileEmail" class="text-slate-500 mt-1">
-            Login to view your profile
-          </p>
-
-          <span class="inline-block mt-3 px-3 py-1 rounded-full
-                       bg-indigo-100 dark:bg-indigo-500/20
-                       text-indigo-600 text-sm">
-            Student
-          </span>
-        </div>
-
-        <button onclick="openAuth('login')"
-                class="md:ml-auto px-5 py-3 rounded-xl
-                       bg-indigo-600 hover:bg-indigo-700
-                       text-white font-semibold">
-          Login / Register
-        </button>
-
-      </div>
-
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-
-        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
-          <p class="text-sm text-slate-500">Applications</p>
-          <h4 class="text-2xl font-bold mt-1">0</h4>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
-          <p class="text-sm text-slate-500">Shortlisted</p>
-          <h4 class="text-2xl font-bold mt-1 text-green-500">0</h4>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
-          <p class="text-sm text-slate-500">Profile Completion</p>
-          <h4 class="text-2xl font-bold mt-1">0%</h4>
-        </div>
-
-        <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800">
-          <p class="text-sm text-slate-500">Saved Internships</p>
-          <h4 class="text-2xl font-bold mt-1">0</h4>
-        </div>
-
-      </div>
-
-      <div class="mt-6 flex justify-center">
-        <button onclick="openAuth('login')"
-                class="px-6 py-3 rounded-xl border
-                       border-slate-300 dark:border-slate-700
-                       font-semibold hover:border-indigo-500">
-          View Full Profile →
-        </button>
-      </div>
-
-    </div>
-  </div>
 </section>
 
 </main>
@@ -1175,6 +1086,65 @@ Developed with ❤️ by <strong>Manali Patil</strong>
 </footer>
 
 
+
+<!-- ================= FIREBASE ================= -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCG3_cN-OzWyR8QOfLYXvOymV2-7l0OvcA",
+  authDomain: "internship-management-e6434.firebaseapp.com",
+  projectId: "internship-management-e6434",
+  storageBucket: "internship-management-e6434.firebasestorage.app",
+  messagingSenderId: "676690881046",
+  appId: "1:676690881046:web:9f7a6f141200d53e13e337"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.firebaseAuth = auth;
+window.firebaseDB = db;
+window.firebaseFns = {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  doc,
+  setDoc,
+  addDoc,
+  collection,
+  serverTimestamp
+};
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    localStorage.setItem("user", JSON.stringify({
+      uid: user.uid,
+      name: user.displayName || user.email.split("@")[0],
+      email: user.email
+    }));
+  } else {
+    localStorage.removeItem("user");
+  }
+});
+</script>
+
 <script>
 
 /* ================= DATA ================= */
@@ -1219,19 +1189,6 @@ color:"bg-purple-600",
 tags:["Python","Pandas","ML"],
 description:"Analyze datasets, build predictive models and create data-driven solutions for real business problems."
 },
-
-{
-title:"Python AI Intern",
-company:"TechNova Labs",
-category:"AI/ML",
-location:"Pune, India",
-duration:"3 Months",
-stipend:"₹10,000/mo",
-logo:"Py",
-color:"bg-orange-500",
-tags:["Python","AI/ML","Flask"],
-description:"Work on real-world AI and Python projects."
-},    
 
 {
 title:"Python Developer Intern",
@@ -1469,11 +1426,13 @@ document.getElementById("internshipModal")
 
 }
 
-function applyInternship(){
+async function applyInternship(){
 
 closeInternship();
 
-if(!localStorage.getItem("user")){
+const user = window.firebaseAuth?.currentUser;
+
+if(!user){
 
 toast("Please login or register first.");
 
@@ -1483,7 +1442,38 @@ return;
 
 }
 
+if(!currentInternship){
+
+toast("Please select an internship.");
+
+return;
+
+}
+
+try{
+
+await window.firebaseFns.addDoc(
+collection(window.firebaseDB,"applications"),
+{
+studentId:user.uid,
+studentName:user.displayName || user.email.split("@")[0],
+studentEmail:user.email,
+internship:currentInternship.title,
+company:currentInternship.company,
+location:currentInternship.location,
+appliedOn:serverTimestamp(),
+status:"Pending"
+}
+);
+
 toast("Application submitted successfully! 🎉");
+
+}catch(error){
+
+console.error("Application error:",error);
+toast("Could not submit application. Please try again.");
+
+}
 
 }
 
@@ -1549,10 +1539,10 @@ register
 
 }
 
-function submitAuth(){
+async function submitAuth(){
 
 const email =
-document.getElementById("authEmail").value;
+document.getElementById("authEmail").value.trim();
 
 const password =
 document.getElementById("authPassword").value;
@@ -1565,10 +1555,12 @@ return;
 
 }
 
+try{
+
 if(authMode==="register"){
 
 const name =
-document.getElementById("regName").value;
+document.getElementById("regName").value.trim();
 
 if(!name){
 
@@ -1578,12 +1570,21 @@ return;
 
 }
 
-localStorage.setItem(
-"user",
-JSON.stringify({
+const credential =
+await window.firebaseFns.createUserWithEmailAndPassword(
+window.firebaseAuth,
+email,
+password
+);
+
+await window.firebaseFns.setDoc(
+window.firebaseFns.doc(window.firebaseDB,"students",credential.user.uid),
+{
+uid:credential.user.uid,
 name:name,
-email:email
-})
+email:email,
+createdAt:window.firebaseFns.serverTimestamp()
+}
 );
 
 toast("Account created successfully! 🎉");
@@ -1594,12 +1595,10 @@ setTimeout(showDashboard,500);
 
 }else{
 
-localStorage.setItem(
-"user",
-JSON.stringify({
-name:email.split("@")[0],
-email:email
-})
+await window.firebaseFns.signInWithEmailAndPassword(
+window.firebaseAuth,
+email,
+password
 );
 
 toast("Login successful!");
@@ -1607,6 +1606,27 @@ toast("Login successful!");
 closeAuth();
 
 setTimeout(showDashboard,500);
+
+}
+
+}catch(error){
+
+console.error("Firebase Auth Error:",error);
+
+if(error.code==="auth/email-already-in-use")
+toast("This email is already registered.");
+
+else if(error.code==="auth/invalid-credential")
+toast("Invalid email or password.");
+
+else if(error.code==="auth/weak-password")
+toast("Password must be at least 6 characters.");
+
+else if(error.code==="auth/invalid-email")
+toast("Please enter a valid email.");
+
+else
+toast(error.message || "Authentication failed.");
 
 }
 
@@ -1668,13 +1688,26 @@ window.scrollTo(0,0);
 
 }
 
-function logout(){
+async function logout(){
+
+try{
+
+if(window.firebaseAuth?.currentUser){
+await window.firebaseFns.signOut(window.firebaseAuth);
+}
 
 localStorage.removeItem("user");
 
 showHome();
 
 toast("Logged out successfully.");
+
+}catch(error){
+
+console.error("Logout error:",error);
+toast("Logout failed. Please try again.");
+
+}
 
 }
 
@@ -1800,28 +1833,8 @@ behavior:"smooth"
 
 renderInternships();
 
-    function openProfile(){
-
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  if(!user){
-    toast("Please login or register first.");
-    setTimeout(() => openAuth("login"), 700);
-    return;
-  }
-
-  document.getElementById("profileName").textContent =
-    user.name || "Student";
-
-  document.getElementById("profileEmail").textContent =
-    user.email || "";
-
-  document.getElementById("profile")
-    .scrollIntoView({behavior:"smooth"});
-}
-    
 </script>
 
 </body>
 </html>
-
+```
